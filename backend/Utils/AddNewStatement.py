@@ -1,11 +1,9 @@
 import asyncio
-
 import pandas as pd
-from db import (add_new_statement, add_new_securities, statement_exists,
-                      add_new_total_total, add_new_unrealized_total, add_new_realized_total)
-from fileprocessor import FileProcessor
 from pandas import DataFrame
-import os
+from Utils.db import (add_new_statement, add_new_securities, statement_exists,
+                      add_new_total_total, add_new_unrealized_total, add_new_realized_total)
+from Utils.fileprocessor import FileProcessor
 
 
 def split_df(dataframe: DataFrame):
