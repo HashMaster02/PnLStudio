@@ -1,0 +1,76 @@
+// database
+datasource db {
+  provider = "sqlite"
+  url      = "file:database.db"
+}
+
+// generator
+generator client {
+  provider             = "prisma-client-py"
+  recursive_type_depth = 5
+}
+
+model Statement {
+  id                       String     @id @default(uuid())
+  statement_start           String
+  statement_end             String
+  account_name              String
+  ending_value              Float?
+  time_weighted_rr           Float?
+  starting_value            Float?
+  realized_pl               Float?
+  change_in_unrealized_pl     Float?
+  transferred_pl_adjustments Float?
+  deposits_and_withdrawals   Float?
+  position_transfers        Float?
+  dividends                Float?
+  withholding_tax           Float?
+  dividend_accruals         Float?
+  interest                 Float?
+  interest_accruals         Float?
+  other_fee                 Float?
+  total_total               TotalTotal?
+  unrealized_total          UnrealizedTotal?
+  realized_total            RealizedTotal?
+
+  @@unique(fields: [statement_start, statement_end, account_name], name: "statementdate_account")
+}
+
+model TotalTotal {
+  id              String    @id @default(uuid())
+  statement       Statement @relation(fields:[statement_id], references:[id])
+  statement_id     String    @unique
+  value      Float?
+  securities      Security[] @relation("TotalTotalSecurities")
+}
+
+model RealizedTotal {
+  id              String    @id @default(uuid())
+  statement       Statement @relation(fields:[statement_id], references:[id])
+  statement_id     String    @unique
+  value   Float?
+  securities      Security[] @relation("RealizedTotalSecurities")
+}
+
+model UnrealizedTotal {
+  id              String    @id @default(uuid())
+  statement       Statement @relation(fields:[statement_id], references:[id])
+  statement_id     String    @unique
+  value Float?
+  securities      Security[] @relation("UnrealizedTotalSecurities")
+}
+
+model Security {
+  id              String           @id @default(uuid())
+  symbol          String
+  value           Float?
+
+  total_total      TotalTotal?       @relation("TotalTotalSecurities", fields: [total_total_id], references: [id])
+  total_total_id    String?
+
+  unrealized_total UnrealizedTotal?  @relation("UnrealizedTotalSecurities", fields: [unrealized_total_id], references: [id])
+  unrealized_total_id String?
+
+  realized_total   RealizedTotal?    @relation("RealizedTotalSecurities", fields: [realized_total_id], references: [id])
+  realized_total_id String?
+  }

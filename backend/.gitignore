@@ -1,0 +1,11 @@
+venv/
+trades/
+.idea/
+database.db
+**/__pycache__/
+tradelog.py
+trade_report.html
+trades.db
+tabulated.txt
+fileproc_rewrite.py
+testing_ground.py
