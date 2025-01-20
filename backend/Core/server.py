@@ -1,8 +1,8 @@
-import uvicorn
 import Core.models as Models
-from fastapi import FastAPI, APIRouter, Request
+from fastapi import APIRouter
 from Core.handlers import ( get_topdown_bottomup_securities, get_available_tickers,
                             get_available_accounts, get_graph_data, get_card_data)
+from Utils.AddNewStatement import add_data
 
 router = APIRouter(prefix="/api")
 
@@ -55,3 +55,13 @@ def get_top_down_stocks(filters: Models.Filters):
                 "data": top_bottom_stocks}
     except Exception as e:
         return {"status":500 , "message": f"Error retrieving top-down and bottom-up securities data: {e}", "data": None}
+
+# DB
+@router.get("/database/refresh")
+async def refresh_database():
+    try:
+        await add_data()
+        return {"status": 200, 
+                "message": "Successfully refreshed databased."}
+    except Exception as e:
+        return {"status":500 , "message": f"Error while refreshing database: {e}"}
