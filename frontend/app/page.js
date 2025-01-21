@@ -94,13 +94,12 @@ export default function Home() {
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 					<div className="rounded-xl border border-gray-200 p-4 space-y-6">
 						<SecuritySelect
-							value={filters.security}
-							onChange={fetchAllData}
-							tickers={
+							items={
 								securitiesData && securitiesData.data
 									? securitiesData.data
 									: []
 							}
+							onChange={fetchAllData}
 						/>
 						<DateRangeSelect
 							startDate={filters.start_date}
