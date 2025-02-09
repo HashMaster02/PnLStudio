@@ -1,5 +1,23 @@
 #!/bin/bash
 
+# Ensure frontend setup script is executable and run it
+if [ -f "frontend/setup.sh" ]; then
+    chmod +x frontend/setup.sh
+    cd ./frontend
+    ./setup.sh
+    if [ $? -ne 0 ]; then
+        echo "Error: Frontend setup script failed."
+        exit 1
+    fi
+else
+    echo "Error: frontend/setup.sh not found."
+    exit 1
+fi
+
+cd ../
+
+echo "Dependencies installed for backend and frontend!"
+
 # Resolve values dynamically
 USER=$(whoami)
 WORKING_DIR=$(pwd)
