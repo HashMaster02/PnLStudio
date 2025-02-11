@@ -14,6 +14,8 @@ else
     exit 1
 fi
 
+cd ../
+
 echo "Dependencies installed for backend!"
 
 # Ensure frontend setup script is executable and run it
