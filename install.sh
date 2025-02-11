@@ -3,7 +3,8 @@
 # Ensure backend setup script is executable and run it
 if [ -f "backend/setup.sh" ]; then
     chmod +x backend/setup.sh
-    cd ./backend/setup.sh
+    cd ./backend 
+    ./setup.sh
     if [ $? -ne 0 ]; then
         echo "Error: Backend setup script failed."
         exit 1
