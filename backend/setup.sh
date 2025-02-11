@@ -40,15 +40,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Run AddNewStatement.py with message
-echo "Running Utils/AddNewStatement.py. This may take some time..."
-Utils/AddNewStatement.py
-if [ $? -ne 0 ]; then
-    echo "Error: AddNewStatement.py execution failed."
-    deactivate
-    exit 1
-fi
-
 # Deactivate virtual environment
 deactivate
 

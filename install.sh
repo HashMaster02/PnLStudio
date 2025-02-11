@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# Ensure backend setup script is executable and run it
+if [ -f "backend/setup.sh" ]; then
+    chmod +x backend/setup.sh
+    cd ./backend/setup.sh
+    if [ $? -ne 0 ]; then
+        echo "Error: Backend setup script failed."
+        exit 1
+    fi
+else
+    echo "Error: backend/setup.sh not found."
+    exit 1
+fi
+
+echo "Dependencies installed for backend!"
+
 # Ensure frontend setup script is executable and run it
 if [ -f "frontend/setup.sh" ]; then
     chmod +x frontend/setup.sh
@@ -16,7 +31,7 @@ fi
 
 cd ../
 
-echo "Dependencies installed for backend and frontend!"
+echo "Dependencies installed for frontend!"
 
 # Resolve values dynamically
 USER=$(whoami)
