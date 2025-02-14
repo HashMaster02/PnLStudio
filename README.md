@@ -3,7 +3,7 @@
 The project includes 2 main directories:
 
 -   **frontend**: Contains the frontend code which is built in Next.js
--   **backend**: Contains the backend code whcih is built in Python
+-   **backend**: Contains the backend code which is built in Python
 
 The root folder also contains a few shell scripts:
 
