@@ -15,6 +15,27 @@ For Mac users, the scripts are prefixed with "MAC" and uses launchd instead of s
 
 # Installation Instructions
 
+## Automatic Installation (via shell scripts)
+
+Ensure the packages below are available on your system:
+
+-   Node (version 21 or later)
+-   NPM
+
+### Linux Systems
+1. Ensure you are in the main directory containing the **frontend** and **backend** directories
+2. run the command below to give execution permissions to the install.sh script:
+```bash
+chmod +x install.sh
+```
+3. run the command below to install the frontend and backend on your system as a systemd service:
+```bash
+./install.sh
+```
+
+### Mac Systems
+NOTE: THIS SECTION WILL BE ADDED LATER. THE SCRIPTS ARE STILL BEING TESTED
+
 ## Manual Installation
 
 ### Frontend
