@@ -1,0 +1,4 @@
+/venv
+*.sh
+*.db
+**/__pycache__
