@@ -148,7 +148,7 @@ class FileProcessor:
             df = pd.read_csv(file_path).replace({np.nan: None})
 
             return df
-        except:
+        except Exception as e:
             print(f"Something went wrong while loading prepared CSV file: {e}" )
             raise
 
