@@ -25,7 +25,7 @@ def split_df(dataframe: DataFrame):
 async def add_data():
     try:
 
-        fileproc = FileProcessor('trades', debug_level=0)
+        fileproc = FileProcessor('trades/synthetic', debug_level=0)
         files = fileproc.get_csv_files()
 
         trade_data = {}
