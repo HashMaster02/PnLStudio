@@ -1,17 +1,30 @@
+# Project Overview
+
+This is a full-stack financial dashboard application designed for a client to analyze their trading performance data from Excel/CSV spreadsheets provided to them by their investment firm. The system processes financial statements and presents them through an interactive web dashboard.
+
+The core technologies used include:
+
+-   FastAPI
+-   Pandas
+-   SQLite
+-   Prisma
+-   Next.js
+-   Recharts
+
 # Project Structure
 
 The project includes 2 main directories:
 
 -   **frontend**: Contains the frontend code which is built in Next.js
--   **backend**: Contains the backend code which is built in Python
+-   **backend**: Contains the backend code which is a REST API built in Python
 
-The root folder also contains a few shell scripts:
+There are 3 ways to start the application:
 
--   **install.sh**: Installs the dependencies for the frontend and backend and creates a systemd service for the application. This is done by creating a _findash_frontend.service_ and _findash_backend.service_ file in the "/etc/systemd/system" directory.
--   **remove.sh**: Removes the _findash_frontend.service_ and _findash_backend.service_ scripts from the "/etc/systemd/system" directory. It does NOT remove the dependencies within the **frontend** and **backend** directories.
--   **restart.sh**: Restarts the systemd service for both the frontend and backend.
+-   **Using Docker (Highly recommended for all platforms)**
+-   Shell scripts (for Linux users)
+-   Manual installation
 
-For Mac users, the scripts are prefixed with "MAC" and uses launchd instead of systemd for the services
+Successful setup should deploy the frontend to http://localhost:3000 and backend to http://localhost:8000.
 
 # Installation Instructions
 
@@ -28,8 +41,6 @@ The easiest way to build the project. Ensure you have the latest version of:
 ```bash
 docker-compose up
 ```
-
-**The application should now be available via link: http://localhost:3000**
 
 ## Automatic Installation (via shell scripts)
 
@@ -126,28 +137,10 @@ prisma generate
 prisma db push
 ```
 
-At this point, the application should work. However, we need to add your data to the database before you'll see anything on the frontend. The next steps will require you to have a folder in the backend called **trades** that includes the CSV files that has your data in it. The directory structure within the **backend** directory should look like this:
-
-```
-backend
-|     Core/
-|     database.db
-|     main.py
-|     requirements.txt
-|     schema.prisma
-|     setup.sh
-|---- trades/
-        | realized_total.csv
-        | total.csv
-        | unrealized_total.csv
-     Utils/
-     venv/
-```
-
-7. run the command below to add the data in the **trades** directory to the database. This may take some time.
+7. run the command below to add the data in the <RELATIVE_PATH> directory to the database. Use **trades/synthetic** to load preview data. This step may take some time.
 
 ```bash
-python -m Utils.AddNewStatement
+python -m Utils.AddNewStatement <RELATIVE_PATH>
 ```
 
 8. run the command below to start the server:
