@@ -1,5 +1,4 @@
 venv/
-trades/
 .idea/
 database.db
 **/__pycache__/
