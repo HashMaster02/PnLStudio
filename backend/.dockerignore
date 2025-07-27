@@ -2,3 +2,4 @@
 *.sh
 *.db
 **/__pycache__
+gen_temp_dataset.py
