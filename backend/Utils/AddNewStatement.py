@@ -1,3 +1,4 @@
+import sys
 import asyncio
 import pandas as pd
 from pandas import DataFrame
@@ -22,10 +23,10 @@ def split_df(dataframe: DataFrame):
     return {"statement_info": statement_info, "security_info": securities}
 
 
-async def add_data():
+async def add_data(filepath):
     try:
 
-        fileproc = FileProcessor('trades/synthetic', debug_level=0)
+        fileproc = FileProcessor(filepath, debug_level=0)
         files = fileproc.get_csv_files()
 
         trade_data = {}
@@ -123,4 +124,7 @@ async def add_data():
         print(f"Error while adding new data to db: {e}")
 
 if __name__ == '__main__':
-    asyncio.run(add_data())
+    filepath = "trades"
+    if len(sys.argv) == 2:
+        filepath = sys.argv[1]
+    asyncio.run(add_data(filepath))
